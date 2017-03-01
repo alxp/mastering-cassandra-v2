@@ -9,6 +9,7 @@ import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
 import com.google.common.base.Objects;
+import java.util.Date;
 
 @Table(keyspace = Constants.KEYSPACE, name = "comments")
 public class Comment extends AbstractVO<Comment>{
@@ -19,7 +20,7 @@ public class Comment extends AbstractVO<Comment>{
 	private String title;
 	private String content;
 	@Column(name = "posted_on")
-	private long postedOn;
+	private Date postedOn;
 	private String commenter;
 	
 	public UUID getId() {
@@ -46,10 +47,10 @@ public class Comment extends AbstractVO<Comment>{
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public long getPostedOn() {
+	public Date getPostedOn() {
 		return postedOn;
 	}
-	public void setPostedOn(long postedOn) {
+	public void setPostedOn(Date postedOn) {
 		this.postedOn = postedOn;
 	}
 	public String getCommenter() {

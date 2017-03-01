@@ -138,7 +138,7 @@ public class Main {
 			Post post = new Post();
 			
 			post.setId(getTimeUUID());
-			post.setPostedOn(System.currentTimeMillis());
+			post.setPostedOn(new Date());
 			post.setBlogId(blogId);
 			post.setContent(getString(10,50));
 			post.setTitle(getString(2,5));
@@ -165,7 +165,7 @@ public class Main {
 			com.setCommenter(getCommenter());
 			com.setContent(getString(1, 10));
 			com.setId(getTimeUUID());
-			com.setPostedOn(System.currentTimeMillis());
+			com.setPostedOn(new Date());
 			com.setPostId(post.getId());
 			com.setTitle(getString(1, 3));
 			com.save(sessionWrapper);
@@ -201,7 +201,7 @@ public class Main {
 				List<Post> posts = Post.getPosts(blogId, lastPostId, pageSize, sessionWrapper);
 				for (Post post: posts){
 					System.out.println(post.getTitle().toUpperCase() + "\t"
-							+ "" + new Date(post.getPostedOn()).toString());
+							+ "" + post.getPostedOn().toString());
 					PostVotes pvotes = new PostVotes().get(sessionWrapper, post.getId());
 					System.out.println("Votes: +"+pvotes.getUpvotes() +"/-"+pvotes.getDownvotes());
 					System.out.println("--------------------------------------------");
@@ -215,7 +215,7 @@ public class Main {
 						System.out.println("  >> " + comment.getTitle().toUpperCase());
 						System.out.println("  "+ comment.getContent());
 						System.out.println("   -- " +comment.getCommenter() + " on "
-								+ new Date(comment.getPostedOn()).toString());
+								+ comment.getPostedOn().toString());
 						CommentVotes cvotes = new CommentVotes().get(sessionWrapper, comment.getId());
 						System.out.println("  Votes: +"+cvotes.getUpvotes()+"/-"+cvotes.getDownvotes());
 						System.out.println("  -.-.-.-.-.-.-");

@@ -9,6 +9,7 @@ import java.util.UUID;
 import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Table;
+import java.util.Date;
 
 @Table(keyspace = Constants.KEYSPACE, name = "posts")
 public class Post extends AbstractVO<Post> {
@@ -17,7 +18,7 @@ public class Post extends AbstractVO<Post> {
 	@Column(name="blog_id")
 	private UUID blogId;
 	@Column(name = "posted_on")
-	private long postedOn;
+	private Date postedOn;
 	private String title;
 	private String content;
 	private Set<String> tags;
@@ -34,10 +35,10 @@ public class Post extends AbstractVO<Post> {
 	public void setBlogId(UUID blogId) {
 		this.blogId = blogId;
 	}
-	public long getPostedOn() {
+	public Date getPostedOn() {
 		return postedOn;
 	}
-	public void setPostedOn(long postedOn) {
+	public void setPostedOn(Date postedOn) {
 		this.postedOn = postedOn;
 	}
 	public String getTitle() {
